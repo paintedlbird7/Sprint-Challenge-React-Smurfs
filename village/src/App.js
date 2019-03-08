@@ -40,43 +40,30 @@ class App extends Component {
       .catch(error => console.log(error));
   }
   
-  addSmurf = (e, smurf) => {
+
+  
+
+
+  setUpdateForm = (e, smurf) => {
+    e.preventDefault();
+    this.setState({
+      activeSmurf: smurf
+    });
+    this.props.history.push("/smurf-form");
+  };
+  
+
+
+  updateSmurf = (e, smurf) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3333/smurfs", smurf)
+      .put(`http://localhost:5000/smurfs${smurf.id}`, smurf)
       .then(res => {
         this.setState({
+          activeSmurf: null,
           smurfs: res.data
         });
         this.props.history.push("/smurf-list");
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-  
-
-
-  setUpdateForm = (e, friend) => {
-    e.preventDefault();
-    this.setState({
-      activeFriend: friend
-    });
-    this.props.history.push("/friend-form");
-  };
-  
-
-
-  updateFriend = (e, friend) => {
-    e.preventDefault();
-    axios
-      .put(`http://localhost:5000/friends${friend.id}`, friend)
-      .then(res => {
-        this.setState({
-          activeFriend: null,
-          friends: res.data
-        });
-        this.props.history.push("/friend-list");
       })
       .catch(err => {
         console.log(err);
@@ -161,5 +148,15 @@ class App extends Component {
 // }
 // } 
 
+const AppWithRouter = withRouter(App);
+// export default withRouter(Component);
+
+const rootElement = document.getElementById('root');
+ReactDOM.render(
+  <Router>
+    <AppWithRouter />
+  </Router>,
+  rootElement
+);
 
 export default App;
