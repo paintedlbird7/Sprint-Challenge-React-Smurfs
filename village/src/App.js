@@ -86,16 +86,38 @@ class App extends Component {
 
 
 
+//   render() {
+//     return (
+//       <div className="App">
+//         <SmurfForm />
+//         <Smurfs smurfs={this.state.smurfs} />
+//       </div>
+//     );
+//   }
+// }
+
+
   render() {
     return (
       <div className="App">
+      <nav>
+      <h1 className="smurf-form">Smurf Form</h1>
+       <div className="nav-links">
+       <NavLink exact to="/">
+       Smurf Form
+       </NavLink>
+
         <SmurfForm />
         <Smurfs smurfs={this.state.smurfs} />
+        <NavLink to="/smurf-list">Smurfs</NavLink>
+        <SmurfForm />
+        <Smurfs smurfs={this.state.smurfs} />
+        </div>
+        </nav>
       </div>
     );
   }
 }
-
 
 
 // render() {
@@ -112,6 +134,9 @@ class App extends Component {
 // //         <Smurfs smurfs={this.state.smurfs} />
 //         </div>
 //       </nav>
+
+
+
 
 //       <Route exact path="/" component={Smurfs} />
 //       <Route
@@ -134,7 +159,7 @@ class App extends Component {
 //    </div>
 //   );
 // }
-// } */}
+// } 
 
 
 export default App;
