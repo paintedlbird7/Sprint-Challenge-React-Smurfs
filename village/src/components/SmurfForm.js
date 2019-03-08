@@ -36,12 +36,6 @@ class SmurfForm extends React.Component {
     // Spread in the properties from the old "item" object - ...this.state.item
     // update the one field we are trying to update
 
-    // this.setState({
-    //   item: {
-    //     ...this.state.item,
-    //     [ev.target.name]: ev.target.value
-    //   }
-    // });
 
     this.setState(prevState => ({
       smurf: {
@@ -67,15 +61,7 @@ class SmurfForm extends React.Component {
   };
 
 
-// class SmurfForm extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       name: '',
-//       age: '',
-//       height: ''
-//     };
-//   }
+
 
 addSmurf = (e, smurf) => {
   e.preventDefault();
@@ -93,30 +79,7 @@ addSmurf = (e, smurf) => {
     });
 };  
 
-//   addSmurf = (event, smurf) => {
-//     event.preventDefault();
-//     // add code to create the smurf using the api
-//     // look in App.js 
-  
-//       axios
-//         .post("http://localhost:3333/smurf", smurf)
-//         .then(res => {
-//           this.setState({
-//             smurfs: res.data
-//           });
-//           this.props.history.push("/smurf-list");
-//         })
-//         .catch(err => {
-//           console.log(err);
-//         });
-//     };
 
-  //   this.setState({
-  //     name: '',
-  //     age: '',
-  //     height: ''
-  //   });
-  // }
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });

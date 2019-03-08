@@ -93,39 +93,6 @@ class App extends Component {
 
 
 
-//   render() {
-//     return (
-//       <div className="App">
-//         <SmurfForm />
-//         <Smurfs smurfs={this.state.smurfs} />
-//       </div>
-//     );
-//   }
-// }
-
-
-//   render() {
-//     return (
-//       <div className="App">
-//       <nav>
-//       <h1 className="smurf-form">Smurf Form</h1>
-//        <div className="nav-links">
-//        <NavLink exact to="/">
-//        Smurf Form
-//        </NavLink>
-
-//         <SmurfForm />
-//         <Smurfs smurfs={this.state.smurfs} />
-//         <NavLink to="/smurf-list">Smurfs</NavLink>
-//         <SmurfForm />
-//         <Smurfs smurfs={this.state.smurfs} />
-//         </div>
-//         </nav>
-//       </div>
-//     );
-//   }
-// }
-
 
 render() {
   return (
@@ -140,9 +107,6 @@ render() {
           <NavLink exact to="/">
             Home
           </NavLink>
-          {/* <NavLink to="/smurf-form">New Smurf</NavLink> */}
-          {/* <SmurfForm />
-         <Smurfs smurfs={this.state.smurfs} /> */}
         </div>
       </nav>
 
@@ -178,7 +142,6 @@ render() {
       <Route
       path="/smurf-form/"
       render={props => (
-      // <SmurfForm {...props} addSmurf={this.addSmurf} />}
 <SmurfForm
               {...props}
               activeSmurf={this.state.activeSmurf}
@@ -191,15 +154,9 @@ render() {
     );
   }
 }
-//       />
-
-//    </div>
-//   );
-// }
-// } 
+ 
 
 const AppWithRouter = withRouter(App);
-// export default withRouter(Component);
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
