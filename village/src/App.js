@@ -53,7 +53,7 @@ class App extends Component {
       .post('http://localhost:3333/smurfs', smurf)
       .then(res => {
         this.setState({
-          items: res.data
+          smurfs: res.data
         });
         // HTTP STEP V - Clear data form in ItemForm and route to /item-list
         this.props.history.push('/smurf-list');
@@ -131,18 +131,24 @@ render() {
   return (
     <div className="App">
       <nav>
-        {/* <h1 className="smurf-header">Smurf List</h1> */}
+
         <div className="nav-links">
+        <NavLink to="/smurf-form">{`${
+              this.state.activeSmurf ? 'Update' : 'Add'
+            } Smurf`}</NavLink>
+
           <NavLink exact to="/">
             Home
           </NavLink>
-          <NavLink to="/smurf-form">New Smurf</NavLink>
+          {/* <NavLink to="/smurf-form">New Smurf</NavLink> */}
           {/* <SmurfForm />
          <Smurfs smurfs={this.state.smurfs} /> */}
         </div>
       </nav>
 
-      {/* <Route exact path="/" component={Smurfs} /> */}
+      
+
+      {/* <Route exact path="/" component={Smurfs} /> cHECK LINE 143*/}
       <Route
         exact
         path="/"
@@ -158,19 +164,39 @@ render() {
       />
       <Route
         path="/smurf-list/:id"
-        render={props => <Smurf {...props} smurfs={this.state.smurfs} />}
+        render={props => (
+        // <Smurf {...props} smurfs={this.state.smurfs} />}
+        <Smurf
+        {...props}
+        // deleteItem={this.deleteItem}
+        smurfs={this.state.smurfs}
+        setUpdateForm={this.setUpdateForm}
+      />
+    )}
       />
 
       <Route
       path="/smurf-form/"
-      render={props => <SmurfForm {...props} addSmurf={this.addSmurf} />}
-
-      />
-
-   </div>
-  );
+      render={props => (
+      // <SmurfForm {...props} addSmurf={this.addSmurf} />}
+<SmurfForm
+              {...props}
+              activeSmurf={this.state.activeSmurf}
+              addSmurf={this.addSmurf}
+              updateSmurf={this.updateSmurf}
+            />
+          )}
+        />
+      </div>
+    );
+  }
 }
-} 
+//       />
+
+//    </div>
+//   );
+// }
+// } 
 
 const AppWithRouter = withRouter(App);
 // export default withRouter(Component);
