@@ -36,12 +36,32 @@ class App extends Component {
   componentDidMount() {
     axios
       .get("http://localhost:3333/smurfs")
-      .then(response => this.setState({ smurfs: response.data }))
-      .catch(error => console.log(error));
+      .then(res => {
+        console.log(res);
+        this.setState({ smurfs: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ error: err });
+      });
   }
   
 
-  
+  addSmurf = (e, smurf) => {
+    e.preventDefault();
+    axios
+      .post('http://localhost:3333/smurfs', smurf)
+      .then(res => {
+        this.setState({
+          items: res.data
+        });
+        // HTTP STEP V - Clear data form in ItemForm and route to /item-list
+        this.props.history.push('/smurf-list');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };  
 
 
   setUpdateForm = (e, smurf) => {
@@ -57,7 +77,7 @@ class App extends Component {
   updateSmurf = (e, smurf) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:5000/smurfs${smurf.id}`, smurf)
+      .put(`http://localhost:3333/smurfs${smurf.id}`, smurf)
       .then(res => {
         this.setState({
           activeSmurf: null,
@@ -116,7 +136,7 @@ render() {
           <NavLink exact to="/">
             Home
           </NavLink>
-          <NavLink to="/smurf-list">New Smurf</NavLink>
+          <NavLink to="/smurf-form">New Smurf</NavLink>
           {/* <SmurfForm />
          <Smurfs smurfs={this.state.smurfs} /> */}
         </div>
@@ -143,8 +163,10 @@ render() {
 
       <Route
       path="/smurf-form/"
+      render={props => <SmurfForm {...props} addSmurf={this.addSmurf} />}
+
       />
-      
+
    </div>
   );
 }
