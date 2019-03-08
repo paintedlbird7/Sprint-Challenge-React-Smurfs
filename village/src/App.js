@@ -84,69 +84,70 @@ class App extends Component {
 // }
 
 
-  render() {
-    return (
-      <div className="App">
-      <nav>
-      <h1 className="smurf-form">Smurf Form</h1>
-       <div className="nav-links">
-       <NavLink exact to="/">
-       Smurf Form
-       </NavLink>
-
-        <SmurfForm />
-        <Smurfs smurfs={this.state.smurfs} />
-        <NavLink to="/smurf-list">Smurfs</NavLink>
-        <SmurfForm />
-        <Smurfs smurfs={this.state.smurfs} />
-        </div>
-        </nav>
-      </div>
-    );
-  }
-}
-
-
-// render() {
-//   return (
-//     <div className="App">
+//   render() {
+//     return (
+//       <div className="App">
 //       <nav>
-//         <h1 className="smurf-header">Lambda Friend List</h1>
-//         <div className="nav-links">
-//           <NavLink exact to="/">
-//             Home
-//           </NavLink>
-//           <NavLink to="/smurf-list">Friends</NavLink>
-//           <SmurfForm />
-// //         <Smurfs smurfs={this.state.smurfs} />
+//       <h1 className="smurf-form">Smurf Form</h1>
+//        <div className="nav-links">
+//        <NavLink exact to="/">
+//        Smurf Form
+//        </NavLink>
+
+//         <SmurfForm />
+//         <Smurfs smurfs={this.state.smurfs} />
+//         <NavLink to="/smurf-list">Smurfs</NavLink>
+//         <SmurfForm />
+//         <Smurfs smurfs={this.state.smurfs} />
 //         </div>
-//       </nav>
-
-
-
-
-//       <Route exact path="/" component={Smurfs} />
-//       <Route
-//         exact
-//         path="/smurf-list"
-//         render={props => (
-//           <SmurfsList
-//             {...props} // this is the same as below
-//             //               match={props.match}
-//             //               history={props.history}
-//             //               location={props.location}
-//             smurfs={this.state.smurfs}
-//           />
-//         )}
-//       />
-//       <Route
-//         path="/smurf-list/:id"
-//         render={props => <Smurf {...props} smurfs={this.state.smurfs} />}
-//       />
-//    </div>
-//   );
+//         </nav>
+//       </div>
+//     );
+//   }
 // }
-// } 
+
+
+render() {
+  return (
+    <div className="App">
+      <nav>
+        {/* <h1 className="smurf-header">Smurf List</h1> */}
+        <div className="nav-links">
+          <NavLink exact to="/">
+            Home
+          </NavLink>
+          <NavLink to="/smurf-list">New Smurf</NavLink>
+          {/* <SmurfForm />
+         <Smurfs smurfs={this.state.smurfs} /> */}
+        </div>
+      </nav>
+
+      {/* <Route exact path="/" component={Smurfs} /> */}
+      <Route
+        exact
+        path="/"
+        render={props => (
+          <Smurfs
+            {...props} // this is the same as below
+            //               match={props.match}
+            //               history={props.history}
+            //               location={props.location}
+            smurfs={this.state.smurfs}
+          />
+        )}
+      />
+      <Route
+        path="/smurf-list/:id"
+        render={props => <Smurf {...props} smurfs={this.state.smurfs} />}
+      />
+
+      <Route
+      path="/smurf-form/"
+      />
+   </div>
+  );
+}
+} 
 
 const AppWithRouter = withRouter(App);
 // export default withRouter(Component);
